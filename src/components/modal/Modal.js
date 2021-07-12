@@ -41,6 +41,12 @@ export default function CustomModal(props) {
     setDesc(currDesc);
   }
 
+  function closeModal() {
+    props.onHide();
+    setTitle("");
+    setDesc("");
+  }
+
   function handleSave() {
     // if everything is valid, create the card
     if (isValid.descIsValid && isValid.titleIsValid) {
@@ -54,10 +60,8 @@ export default function CustomModal(props) {
           }
         ];
       });
-      setTitle("");
-      setDesc("");
     }
-    props.onHide();
+    closeModal();
   }
 
   return (
@@ -100,7 +104,7 @@ export default function CustomModal(props) {
         >
           Save
         </Button>
-        <Button variant="secondary" onClick={props.onHide}>
+        <Button variant="secondary" onClick={closeModal}>
           Close
         </Button>
       </Modal.Footer>
